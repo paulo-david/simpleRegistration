@@ -1,11 +1,17 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from clients.utils.mixins import SerializerByMethodMixin
 
 from clients.models import Client
 from clients.serializers import ClientSerializer
 
+
 class ClientView(ListCreateAPIView):
 
     queryset = Client.objects.all()
+    # serializer_map = {
+    #     "GET": ,
+    #     "POST": ProductDetailSerializer
+    # }
     serializer_class = ClientSerializer
 
 
