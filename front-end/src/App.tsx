@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useForm } from "react-hook-form";
+import EndpointBox from "./components/EndpointBox";
 
-function App() {
+const App = () => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data: any) => console.log(data);
+
+  const formCreateClient = (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="full-name">full name:</label>
+      <input type="text" id="full-name" {...register("full_name")} />
+
+      <label htmlFor="email">email:</label>
+      <input type="email" id="email" {...register("email")} />
+
+      <label htmlFor="telefone">telefone:</label>
+      <input type="tel" id="telefone" {...register("telefone")} />
+
+      <button type="submit">Send</button>
+    </form>
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <EndpointBox
+        title="Create client"
+        form={formCreateClient}
+        response={{ oi: "asdf" }}
+      ></EndpointBox>
     </div>
   );
-}
+};
 
 export default App;
