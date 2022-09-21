@@ -8,7 +8,7 @@ interface Client {
 }
 
 const createClient = createAsyncThunk(
-  "users/create",
+  "clients/create",
   async (client: Client, thunkAPI) => {
     const response = await api.post("clients/", client);
     return response.data;

@@ -3,18 +3,16 @@ import { useForm } from "react-hook-form";
 import EndpointBox from "./components/EndpointBox";
 
 import store from "./features/store";
-import { Client, createClient } from "./features/clients/clientsSlice";
+import { createClient } from "./features/clients/clientsSlice";
 
 const App = () => {
   const { register, handleSubmit } = useForm();
 
-  // const dispatch = useAppDispatch;
-
   const onSubmit = (data: any) => {
     console.log(data);
-    // dispatch({ type: 'createClient', {} })
-    const cli = { ...data } as Client;
-    store.dispatch(createClient(cli))
+    store.dispatch(createClient(data));
+
+    console.log(store.getState().client.client);
   };
 
   const formCreateClient = (
