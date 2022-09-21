@@ -7,22 +7,21 @@ import { dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import List from "./styles";
 
 const ClientList = () => {
-  const [lst, setLst] = useState("");
+  const [lst, setLst] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       await store.dispatch(listClients());
-      console.log(store.getState().client.client_list);
-
-      setLst(JSON.stringify(store.getState().client.client_list, null, 2));
+      setLst(store.getState().client.client_list);
     }
+
     fetchData();
   }, []);
 
   return (
     <List>
       <SyntaxHighlighter language="javascript" style={dark}>
-        {lst}
+        {JSON.stringify(lst, null, 2)}
       </SyntaxHighlighter>
     </List>
   );
