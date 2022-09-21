@@ -9,8 +9,11 @@ const EndpointData = styled.section`
 
   h2 {
     text-align: left;
-    padding-left: 30px;
-    padding-top: 30px;
+
+    margin: 5px 0;
+
+    padding-left: 10px;
+    padding-top: 10px;
   }
 
   .data {
@@ -20,8 +23,6 @@ const EndpointData = styled.section`
     form {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-
       
       label {
         text-align: left;
@@ -34,6 +35,15 @@ const EndpointData = styled.section`
         height: 25px;
         border: 1px solid black;
         border-radius: 4px;
+      }
+
+      button {
+        width: 35%;
+        align-self: center;
+
+        :hover{
+          cursor: pointer;
+        }
       }
     }
   }

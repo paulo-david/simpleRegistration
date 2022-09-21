@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 import clientsReducer from "./clients/clientsSlice";
 
 export const store = configureStore({
@@ -7,8 +6,5 @@ export const store = configureStore({
     client: clientsReducer,
   },
 });
-
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch: () => AppDispatch = useDispatch;
 
 export default store;
