@@ -15,6 +15,11 @@ const createClient = createAsyncThunk(
   }
 );
 
+const listClients = createAsyncThunk("clients/list", async (thunkAPI) => {
+  const response = await api.get("clients/");
+  return response.data;
+});
+
 interface ClientsState {
   client: {};
   client_list: [];
@@ -35,9 +40,12 @@ const clientsSlice = createSlice({
     builder.addCase(createClient.fulfilled, (state, action) => {
       state.client = action.payload;
     });
+    builder.addCase(listClients.fulfilled, (state, action) => {
+      state.client_list = action.payload;
+    });
   },
 });
 
 export default clientsSlice.reducer;
-export { createClient };
+export { createClient, listClients };
 export type { Client };
