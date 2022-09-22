@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
-import { listClients } from "../../features/clients/clientsSlice";
-import store from "../../features/store";
+import { useEffect } from "react";
+import { useAppSelector as useSelector } from "../../features/hooks";
 
+import store from "../../features/store";
+import { listClients } from "../../features/clients/clientsSlice";
+
+import List from "./styles";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import List from "./styles";
 
 const ClientList = () => {
-  const [lst, setLst] = useState([]);
+
+  const lst = useSelector(state => state.client.client_list);
 
   useEffect(() => {
     async function fetchData() {
       await store.dispatch(listClients());
-      setLst(store.getState().client.client_list);
     }
 
     fetchData();

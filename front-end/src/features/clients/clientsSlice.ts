@@ -46,6 +46,7 @@ const clientsSlice = createSlice({
   },
 });
 
+export type { Client };
+
 export default clientsSlice.reducer;
 export { createClient, listClients };
-export type { Client };
