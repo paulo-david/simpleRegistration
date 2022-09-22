@@ -40,7 +40,7 @@ const EndpointData = styled.section`
       }
 
       button {
-        width: 35%;
+        width: 65px;
         align-self: center;
 
         :hover {
