@@ -18,7 +18,7 @@ const ClientList = () => {
     }
 
     fetchData();
-  }, []);
+  }, [lst]);
 
   return (
     <List>
