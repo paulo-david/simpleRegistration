@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 import { useAppSelector as useSelector } from "../../features/hooks";
 
 import EndpointBox from "../EndpointBox";
@@ -15,25 +14,35 @@ import {
 
 const FormGetClient = () => {
   const lst = useSelector((state) => state.client.client_list);
-  const client = useSelector((state) => state.client.client);
+  const client: Client = useSelector((state) => state.client.client);
 
   useEffect(() => {
     store.dispatch(listClients());
+
+    setValue(client.id || "");
   }, [client]);
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setValue(event.target.value);
+
     const req_body: ClientDetail = {
-      req_client_id: data.client_id,
+      req_client_id: event.target.value,
     };
 
     store.dispatch(getClient(req_body));
   };
 
   const form = (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <label htmlFor="client_id_select">client_id:</label>
-      <select id="client_id_select" required {...register("client_id")}>
+      <select
+        id="client_id_select"
+        required
+        value={value}
+        onChange={handleChange}
+      >
         <option value="">--Select a client--</option>
         {lst.map((cli: Client) => (
           <option value={cli.id} key={cli.id}>{`${
@@ -41,8 +50,6 @@ const FormGetClient = () => {
           } (${cli.id?.slice(0, 7)})`}</option>
         ))}
       </select>
-
-      <button type="submit">Send</button>
     </form>
   );
 
