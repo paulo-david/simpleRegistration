@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAppSelector as useSelector } from "../../features/hooks";
 
 import EndpointBox from "../EndpointBox";
+import ClientData from "../ClientData";
 
 import store from "../../features/store";
 import {
@@ -45,7 +46,11 @@ const FormGetClient = () => {
     </form>
   );
 
-  return <EndpointBox title="Get client" form={form}></EndpointBox>;
+  return (
+    <EndpointBox title="Get client" form={form}>
+      <ClientData></ClientData>
+    </EndpointBox>
+  );
 };
 
 export default FormGetClient;
