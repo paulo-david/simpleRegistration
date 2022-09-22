@@ -28,8 +28,8 @@ const EndpointData = styled.section`
         text-align: left;
       }
       
-      input, button {
-        margin-bottom: 7px;
+      input, button, select {
+        margin-bottom: 8px;
         background-color: white;
 
         height: 25px;

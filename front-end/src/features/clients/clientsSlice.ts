@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../services/api";
 
 interface Client {
-  id ?: string;
+  id?: string;
   full_name?: string;
   email?: string;
   telephone?: string;
@@ -10,7 +10,7 @@ interface Client {
 
 interface ClientDetail {
   req_client_id: string;
-  req_data: Client;
+  req_data?: Client;
 }
 
 const createClient = createAsyncThunk(
@@ -29,6 +29,13 @@ const updateClient = createAsyncThunk(
       clientDetail.req_data
     );
     return response.data;
+  }
+);
+
+const deleteClient = createAsyncThunk(
+  "clients/delete",
+  async (clientDetail: ClientDetail, thunkAPI) => {
+    await api.delete(`clients/${clientDetail.req_client_id}/`);
   }
 );
 
@@ -60,6 +67,9 @@ const clientsSlice = createSlice({
     builder.addCase(updateClient.fulfilled, (state, action) => {
       state.client = action.payload;
     });
+    builder.addCase(deleteClient.fulfilled, (state, action) => {
+      state.client = {};
+    });
     builder.addCase(listClients.fulfilled, (state, action) => {
       state.client_list = action.payload;
     });
@@ -69,4 +79,4 @@ const clientsSlice = createSlice({
 export type { Client, ClientDetail };
 
 export default clientsSlice.reducer;
-export { createClient, updateClient, listClients };
+export { createClient, updateClient, deleteClient, listClients };

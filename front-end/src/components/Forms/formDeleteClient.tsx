@@ -7,26 +7,20 @@ import store from "../../features/store";
 import {
   Client,
   ClientDetail,
-  updateClient,
+  deleteClient,
 } from "../../features/clients/clientsSlice";
 
-const FormUpdateClient = () => {
+const FormDeleteClient = () => {
   const lst = useSelector((state) => state.client.client_list);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => {
-    const array = Object.entries(data);
-    const filtered = array.filter(
-      ([key, value]) => key !== "client_id" && value !== ""
-    );
-    const req_data: Client = Object.fromEntries(filtered);
-
     const req_body: ClientDetail = {
       req_client_id: data.client_id,
-      req_data,
     };
+
     console.log(req_body);
-    store.dispatch(updateClient(req_body));
+    store.dispatch(deleteClient(req_body));
   };
 
   const form = (
@@ -41,20 +35,11 @@ const FormUpdateClient = () => {
         ))}
       </select>
 
-      <label htmlFor="full-name">full name:</label>
-      <input type="text" id="full-name" {...register("full_name")} />
-
-      <label htmlFor="email">email:</label>
-      <input type="email" id="email" {...register("email")} />
-
-      <label htmlFor="telefone">telefone:</label>
-      <input type="tel" id="telefone" {...register("telephone")} />
-
       <button type="submit">Send</button>
     </form>
   );
 
-  return <EndpointBox title="Update client" form={form}></EndpointBox>;
+  return <EndpointBox title="Delete client" form={form}></EndpointBox>;
 };
 
-export default FormUpdateClient;
+export default FormDeleteClient;
