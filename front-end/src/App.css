@@ -1,0 +1,18 @@
+.requests {
+  display: flex;
+
+  width: 100%;
+}
+
+.column1,
+.column2 {
+  width: 100%;
+}
+
+
+@media (max-width:768px){
+
+  .requests{
+    flex-direction: column;
+  }
+}
