@@ -5,73 +5,72 @@ from rest_framework.views import status
 from rest_framework.test import APITestCase
 
 
-class TestClientView(APITestCase):
+class TestContactView(APITestCase):
 
     @classmethod
     def setUpTestData(cls) -> None:
 
-        cls.client_data = {
-            "full_name": "paulo dogs",
-            "email": "paulo@mail.com",
-            "telephone": "37999999999"
-        }
+        cls.cli = baker.make("clients.Client")
 
-        cls.client_data_INVALID_email = {
-            "full_name": "paulo dogs",
-            "email": "paulo@mail",
-            "telephone": "37999999999"
-        }
-
-        cls.client_list = baker.make("clients.Client", _quantity=10)
-        cls.path = "/api/clients/"
-
-    def test_create_client(self):
-
-        response = self.client.post(self.path, self.client_data)
-
-        expected_response = {
-            "id": response.data["id"],
+        cls.contact_data = {
             "full_name": "paulo dogs",
             "email": "paulo@mail.com",
             "telephone": "37999999999",
-            "contacts": [],
-            "created_at": response.data["created_at"]
+            "client": str(cls.cli.id),
+        }
+
+        cls.contact_data_INVALID_email = {
+            "full_name": "paulo dogs",
+            "email": "paulo",
+            "telephone": "37999999999",
+            "client": str(cls.cli.id),
+        }
+
+        cls.contact_list = baker.make("contacts.contact", _quantity=10)
+        cls.path = "/api/contacts/"
+
+    def test_create_contact(self):
+
+        response = self.client.post(self.path, self.contact_data)
+
+        expected_response = {
+            "id": response.data["id"],
+            **self.contact_data,
+            "client": self.cli.id
         }
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data, expected_response)
 
-    def test_create_multiple_clients(self):
+    def test_create_multiple_contacts(self):
 
         for i in range(22):
-            response = self.client.post(self.path, self.client_data)
+            response = self.client.post(self.path, self.contact_data)
 
             expected_response = {
                 "id": response.data["id"],
-                "full_name": "paulo dogs",
-                "email": "paulo@mail.com",
-                "telephone": "37999999999",
-                "contacts": [],
-                "created_at": response.data["created_at"]
+                **self.contact_data,
+                "client": self.cli.id
             }
 
             self.assertEqual(response.status_code, status.HTTP_201_CREATED)
             self.assertEqual(response.data, expected_response)
 
-    def test_create_client_with_EMPTY_body(self):
+    def test_create_contact_with_EMPTY_body(self):
         response = self.client.post(self.path, {})
 
         expected_response = {
             "full_name": ["This field is required."],
             "email": ["This field is required."],
-            "telephone": ["This field is required."]
+            "telephone": ["This field is required."],
+            "client": ["This field is required."]
         }
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data, expected_response)
 
-    def test_create_client_with_INVALID_email(self):
-        response = self.client.post(self.path, self.client_data_INVALID_email)
+    def test_create_contact_with_INVALID_email(self):
+        response = self.client.post(self.path, self.contact_data_INVALID_email)
 
         expected_response = {
             "email": ["Enter a valid email address."]
@@ -85,13 +84,12 @@ class TestClientView(APITestCase):
         response = self.client.get(self.path)
 
         expected_response = [OrderedDict([
-            ("id", str(cli.id)),
-            ("full_name", cli.full_name),
-            ("email", cli.email),
-            ("telephone", cli.telephone),
-            ("contacts", []),
-            ("created_at", cli.created_at.strftime("%Y-%m-%dT%H:%M:%S.%fZ")),
-        ]) for cli in self.client_list]
+            ("id", str(contact.id)),
+            ("full_name", contact.full_name),
+            ("email", contact.email),
+            ("telephone", contact.telephone),
+            ("client", contact.client.id),
+        ]) for contact in self.contact_list]
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, expected_response)
