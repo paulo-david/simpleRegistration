@@ -6,6 +6,8 @@ interface Client {
   full_name?: string;
   email?: string;
   telephone?: string;
+  // contacts?: Array<Contact>
+  created_at?: string;
 }
 
 interface ClientDetail {
@@ -17,6 +19,14 @@ const createClient = createAsyncThunk(
   "clients/create",
   async (client: Client, thunkAPI) => {
     const response = await api.post("clients/", client);
+    return response.data;
+  }
+);
+
+const getClient = createAsyncThunk(
+  "clients/get",
+  async (clientDetail: ClientDetail, thunkAPI) => {
+    const response = await api.get(`clients/${clientDetail.req_client_id}/`);
     return response.data;
   }
 );
@@ -64,6 +74,9 @@ const clientsSlice = createSlice({
     builder.addCase(createClient.fulfilled, (state, action) => {
       state.client = action.payload;
     });
+    builder.addCase(getClient.fulfilled, (state, action) => {
+      state.client = action.payload;
+    });
     builder.addCase(updateClient.fulfilled, (state, action) => {
       state.client = action.payload;
     });
@@ -79,4 +92,4 @@ const clientsSlice = createSlice({
 export type { Client, ClientDetail };
 
 export default clientsSlice.reducer;
-export { createClient, updateClient, deleteClient, listClients };
+export { createClient, getClient, updateClient, deleteClient, listClients };

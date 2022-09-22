@@ -23,12 +23,14 @@ const EndpointData = styled.section`
     form {
       display: flex;
       flex-direction: column;
-      
+
       label {
         text-align: left;
       }
-      
-      input, button, select {
+
+      input,
+      button,
+      select {
         margin-bottom: 8px;
         background-color: white;
 
@@ -41,7 +43,7 @@ const EndpointData = styled.section`
         width: 35%;
         align-self: center;
 
-        :hover{
+        :hover {
           cursor: pointer;
         }
       }

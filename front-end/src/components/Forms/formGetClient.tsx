@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAppSelector as useSelector } from "../../features/hooks";
 
@@ -7,19 +8,25 @@ import store from "../../features/store";
 import {
   Client,
   ClientDetail,
-  deleteClient,
+  getClient,
+  listClients,
 } from "../../features/clients/clientsSlice";
 
-const FormDeleteClient = () => {
+const FormGetClient = () => {
   const lst = useSelector((state) => state.client.client_list);
-  const { register, handleSubmit } = useForm();
+  const client = useSelector((state) => state.client.client);
 
+  useEffect(() => {
+    store.dispatch(listClients());
+  }, [client]);
+
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
     const req_body: ClientDetail = {
       req_client_id: data.client_id,
     };
 
-    store.dispatch(deleteClient(req_body));
+    store.dispatch(getClient(req_body));
   };
 
   const form = (
@@ -38,7 +45,7 @@ const FormDeleteClient = () => {
     </form>
   );
 
-  return <EndpointBox title="Delete client" form={form}></EndpointBox>;
+  return <EndpointBox title="Get client" form={form}></EndpointBox>;
 };
 
-export default FormDeleteClient;
+export default FormGetClient;

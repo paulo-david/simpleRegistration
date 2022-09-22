@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const List = styled.div`
+  text-align: left;
+`;
 
-    text-align: left;
-`
-
-export default List
+export default List;

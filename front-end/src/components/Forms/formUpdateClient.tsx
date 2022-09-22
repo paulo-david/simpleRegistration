@@ -25,7 +25,7 @@ const FormUpdateClient = () => {
       req_client_id: data.client_id,
       req_data,
     };
-    console.log(req_body);
+
     store.dispatch(updateClient(req_body));
   };
 
