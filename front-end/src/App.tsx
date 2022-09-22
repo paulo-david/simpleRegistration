@@ -16,6 +16,7 @@ const App = () => {
           <FormUpdateClient></FormUpdateClient>
           <FormDeleteClient></FormDeleteClient>
         </section>
+
         <section className="column2">
           <FormGetClient></FormGetClient>
         </section>

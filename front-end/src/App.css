@@ -9,10 +9,8 @@
   width: 100%;
 }
 
-
-@media (max-width:768px){
-
-  .requests{
+@media (max-width: 768px) {
+  .requests {
     flex-direction: column;
   }
 }
