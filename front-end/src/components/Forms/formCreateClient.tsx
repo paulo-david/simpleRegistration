@@ -8,10 +8,7 @@ const FormCreateClient = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => {
-    console.log(data);
     store.dispatch(createClient(data));
-
-    console.log(store.getState().client.client);
   };
 
   const form = (
