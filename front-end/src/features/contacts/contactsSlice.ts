@@ -41,12 +41,12 @@ const createContact = createAsyncThunk(
 //   }
 // );
 
-// const deleteClient = createAsyncThunk(
-//   "clients/delete",
-//   async (clientDetail: ClientDetail, thunkAPI) => {
-//     await api.delete(`clients/${clientDetail.req_client_id}/`);
-//   }
-// );
+const deleteContact = createAsyncThunk(
+  "contacts/delete",
+  async (clientDetail: ContactDetail, thunkAPI) => {
+    await api.delete(`contacts/${clientDetail.req_contact_id}/`);
+  }
+);
 
 // const listClients = createAsyncThunk("clients/list", async (thunkAPI) => {
 //   const response = await api.get("clients/");
@@ -79,9 +79,9 @@ const contactsSlice = createSlice({
     // builder.addCase(updateClient.fulfilled, (state, action) => {
     //   state.client = action.payload;
     // });
-    // builder.addCase(deleteClient.fulfilled, (state, action) => {
-    //   state.client = {};
-    // });
+    builder.addCase(deleteContact.fulfilled, (state, action) => {
+      state.contact = {};
+    });
     // builder.addCase(listClients.fulfilled, (state, action) => {
     //   state.client_list = action.payload;
     // });
@@ -92,4 +92,4 @@ export type { Contact, ContactDetail };
 
 export default contactsSlice.reducer;
 // export { createContact, getClient, updateClient, deleteClient, listClients };
-export { createContact };
+export { createContact, deleteContact };
