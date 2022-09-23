@@ -35,9 +35,9 @@ const FormUpdateClient = () => {
       <select id="client_id_select" required {...register("client_id")}>
         <option value="">--Select a client--</option>
         {lst.map((cli: Client) => (
-          <option value={cli.id} key={cli.id}>{`${
-            cli.full_name
-          } (${cli.id?.slice(0, 7)})`}</option>
+          <option value={cli.id} key={cli.id}>
+            {`${cli.full_name} (${cli.id?.slice(0, 7)})`}
+          </option>
         ))}
       </select>
 

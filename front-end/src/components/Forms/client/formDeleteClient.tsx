@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAppSelector as useSelector } from "../../../features/hooks"
+import { useAppSelector as useSelector } from "../../../features/hooks";
 
 import EndpointBox from "../../EndpointBox";
 import store from "../../../features/store";
@@ -28,9 +28,9 @@ const FormDeleteClient = () => {
       <select id="client_id_select" required {...register("client_id")}>
         <option value="">--Select a client--</option>
         {lst.map((cli: Client) => (
-          <option value={cli.id} key={cli.id}>{`${
-            cli.full_name
-          } (${cli.id?.slice(0, 7)})`}</option>
+          <option value={cli.id} key={cli.id}>
+            {`${cli.full_name} (${cli.id?.slice(0, 7)})`}
+          </option>
         ))}
       </select>
 

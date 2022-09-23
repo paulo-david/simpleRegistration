@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAppSelector as useSelector } from "../../../features/hooks"
+import { useAppSelector as useSelector } from "../../../features/hooks";
 
 import EndpointBox from "../../EndpointBox";
 import ClientData from "../../ClientData";
@@ -47,9 +47,9 @@ const FormGetClient = () => {
       >
         <option value="">--Select a client--</option>
         {lst.map((cli: Client) => (
-          <option value={cli.id} key={cli.id}>{`${
-            cli.full_name
-          } (${cli.id?.slice(0, 7)})`}</option>
+          <option value={cli.id} key={cli.id}>
+            {`${cli.full_name} (${cli.id?.slice(0, 7)})`}
+          </option>
         ))}
       </select>
     </form>
