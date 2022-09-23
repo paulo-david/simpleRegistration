@@ -9,6 +9,7 @@ import FormGetClient from "./components/Forms/client/formGetClient";
 
 import FormCreateContact from "./components/Forms/contact/formCreateContact";
 import FormDeleteContact from "./components/Forms/contact/formDeleteContact";
+import FormGetContact from "./components/Forms/contact/formGetContact";
 
 const App = () => {
   return (
@@ -32,7 +33,9 @@ const App = () => {
           <FormCreateContact></FormCreateContact>
           <FormDeleteContact></FormDeleteContact>
         </section>
-        <section className="column2"></section>
+        <section className="column2">
+          <FormGetContact></FormGetContact>
+        </section>
       </div>
 
     </div>

@@ -22,36 +22,36 @@ const createContact = createAsyncThunk(
   }
 );
 
-// const getClient = createAsyncThunk(
-//   "clients/get",
-//   async (clientDetail: ClientDetail, thunkAPI) => {
-//     const response = await api.get(`clients/${clientDetail.req_client_id}/`);
-//     return response.data;
-//   }
-// );
-
-// const updateClient = createAsyncThunk(
-//   "clients/update",
-//   async (clientDetail: ClientDetail, thunkAPI) => {
-//     const response = await api.patch(
-//       `clients/${clientDetail.req_client_id}/`,
-//       clientDetail.req_data
-//     );
-//     return response.data;
-//   }
-// );
-
-const deleteContact = createAsyncThunk(
-  "contacts/delete",
-  async (clientDetail: ContactDetail, thunkAPI) => {
-    await api.delete(`contacts/${clientDetail.req_contact_id}/`);
+const getContact = createAsyncThunk(
+  "contacts/get",
+  async (contactDetail: ContactDetail, thunkAPI) => {
+    const response = await api.get(`contacts/${contactDetail.req_contact_id}/`);
+    return response.data;
   }
 );
 
-// const listClients = createAsyncThunk("clients/list", async (thunkAPI) => {
-//   const response = await api.get("clients/");
-//   return response.data;
-// });
+const updateContact = createAsyncThunk(
+  "contacts/update",
+  async (contactDetail: ContactDetail, thunkAPI) => {
+    const response = await api.patch(
+      `contacts/${contactDetail.req_contact_id}/`,
+      contactDetail.req_data
+    );
+    return response.data;
+  }
+);
+
+const deleteContact = createAsyncThunk(
+  "contacts/delete",
+  async (contactDetail: ContactDetail, thunkAPI) => {
+    await api.delete(`contacts/${contactDetail.req_contact_id}/`);
+  }
+);
+
+const listContacts = createAsyncThunk("contacts/list", async (thunkAPI) => {
+  const response = await api.get("contacts/");
+  return response.data;
+});
 
 interface ContactsState {
   contact: {};
@@ -73,23 +73,22 @@ const contactsSlice = createSlice({
     builder.addCase(createContact.fulfilled, (state, action) => {
       state.contact = action.payload;
     });
-    // builder.addCase(getClient.fulfilled, (state, action) => {
-    //   state.client = action.payload;
-    // });
-    // builder.addCase(updateClient.fulfilled, (state, action) => {
-    //   state.client = action.payload;
-    // });
+    builder.addCase(getContact.fulfilled, (state, action) => {
+      state.contact = action.payload;
+    });
+    builder.addCase(updateContact.fulfilled, (state, action) => {
+      state.contact = action.payload;
+    });
     builder.addCase(deleteContact.fulfilled, (state, action) => {
       state.contact = {};
     });
-    // builder.addCase(listClients.fulfilled, (state, action) => {
-    //   state.client_list = action.payload;
-    // });
+    builder.addCase(listContacts.fulfilled, (state, action) => {
+      state.contact_list = action.payload;
+    });
   },
 });
 
 export type { Contact, ContactDetail };
 
 export default contactsSlice.reducer;
-// export { createContact, getClient, updateClient, deleteClient, listClients };
-export { createContact, deleteContact };
+export { createContact, getContact, deleteContact, listContacts };
