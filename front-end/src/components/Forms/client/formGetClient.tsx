@@ -11,16 +11,18 @@ import {
   getClient,
   listClients,
 } from "../../../features/clients/clientsSlice";
+import { Contact } from "../../../features/contacts/contactsSlice";
 
 const FormGetClient = () => {
   const lst = useSelector((state) => state.client.client_list);
   const client: Client = useSelector((state) => state.client.client);
+  const contact: Contact = useSelector((state) => state.contact.contact);
 
   useEffect(() => {
     store.dispatch(listClients());
 
     setValue(client.id || "");
-  }, [client]);
+  }, [client, contact]);
 
   const [value, setValue] = useState("");
 
