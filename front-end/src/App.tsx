@@ -8,6 +8,7 @@ import FormDeleteClient from "./components/Forms/client/formDeleteClient";
 import FormGetClient from "./components/Forms/client/formGetClient";
 
 import FormCreateContact from "./components/Forms/contact/formCreateContact";
+import FormUpdateContact from "./components/Forms/contact/formUpdateContact";
 import FormDeleteContact from "./components/Forms/contact/formDeleteContact";
 import FormGetContact from "./components/Forms/contact/formGetContact";
 
@@ -31,6 +32,7 @@ const App = () => {
       <div className="requests">
         <section className="column1">
           <FormCreateContact></FormCreateContact>
+          <FormUpdateContact></FormUpdateContact>
           <FormDeleteContact></FormDeleteContact>
         </section>
         <section className="column2">

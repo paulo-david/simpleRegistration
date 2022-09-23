@@ -91,4 +91,4 @@ const contactsSlice = createSlice({
 export type { Contact, ContactDetail };
 
 export default contactsSlice.reducer;
-export { createContact, getContact, deleteContact, listContacts };
+export { createContact, getContact, updateContact, deleteContact, listContacts };
