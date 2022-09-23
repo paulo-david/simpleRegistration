@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useAppSelector as useSelector } from "../../features/hooks";
+import { useAppSelector as useSelector } from "../../../features/hooks"
 
-import EndpointBox from "../EndpointBox";
-import ClientData from "../ClientData";
+import EndpointBox from "../../EndpointBox";
+import ClientData from "../../ClientData";
 
-import store from "../../features/store";
+import store from "../../../features/store";
 import {
   Client,
   ClientDetail,
   getClient,
   listClients,
-} from "../../features/clients/clientsSlice";
+} from "../../../features/clients/clientsSlice";
 
 const FormGetClient = () => {
   const lst = useSelector((state) => state.client.client_list);

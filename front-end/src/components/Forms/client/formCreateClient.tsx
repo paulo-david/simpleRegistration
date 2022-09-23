@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import EndpointBox from "../EndpointBox";
+import EndpointBox from "../../EndpointBox";
 
-import store from "../../features/store";
-import { createClient } from "../../features/clients/clientsSlice";
+import store from "../../../features/store";
+import { createClient } from "../../../features/clients/clientsSlice";
 
 const FormCreateClient = () => {
   const { register, handleSubmit } = useForm();

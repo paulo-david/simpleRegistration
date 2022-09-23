@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
-import { useAppSelector as useSelector } from "../../features/hooks";
+import { useAppSelector as useSelector } from "../../../features/hooks"
 
-import EndpointBox from "../EndpointBox";
+import EndpointBox from "../../EndpointBox";
+import store from "../../../features/store";
 
-import store from "../../features/store";
 import {
   Client,
   ClientDetail,
   deleteClient,
-} from "../../features/clients/clientsSlice";
+} from "../../../features/clients/clientsSlice";
 
 const FormDeleteClient = () => {
   const lst = useSelector((state) => state.client.client_list);

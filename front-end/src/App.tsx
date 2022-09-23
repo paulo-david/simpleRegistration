@@ -2,10 +2,10 @@ import "./App.css";
 
 import ClientList from "./components/ClientList";
 
-import FormCreateClient from "./components/Forms/formCreateClient";
-import FormUpdateClient from "./components/Forms/formUpdateClient";
-import FormDeleteClient from "./components/Forms/formDeleteClient";
-import FormGetClient from "./components/Forms/formGetClient";
+import FormCreateClient from "./components/Forms/client/formCreateClient";
+import FormUpdateClient from "./components/Forms/client/formUpdateClient";
+import FormDeleteClient from "./components/Forms/client/formDeleteClient";
+import FormGetClient from "./components/Forms/client/formGetClient";
 
 const App = () => {
   return (
