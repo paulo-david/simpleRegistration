@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAppSelector as useSelector } from "../../../features/hooks"
+import { useAppSelector as useSelector } from "../../../features/hooks";
 
 import EndpointBox from "../../EndpointBox";
 
@@ -41,7 +41,13 @@ const FormCreateClient = () => {
     </form>
   );
 
-  return <EndpointBox title="Create contact" form={form}></EndpointBox>;
+  return (
+    <EndpointBox
+      title="Create contact"
+      form={form}
+      theme="#5DD6F4"
+    ></EndpointBox>
+  );
 };
 
 export default FormCreateClient;

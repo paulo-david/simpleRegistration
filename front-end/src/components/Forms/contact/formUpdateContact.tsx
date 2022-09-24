@@ -10,7 +10,7 @@ import {
   updateContact,
 } from "../../../features/contacts/contactsSlice";
 
-const FormUpdateClient = () => {
+const FormUpdateContact = () => {
   const lst = useSelector((state) => state.contact.contact_list);
   const { register, handleSubmit } = useForm();
 
@@ -31,6 +31,7 @@ const FormUpdateClient = () => {
 
   const form = (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="contact_id_select">contact_id:</label>
       <select id="contact_id_select" required {...register("contact_id")}>
         <option value="">--Select a client--</option>
         {lst.map((contact: Contact) => (
@@ -53,7 +54,13 @@ const FormUpdateClient = () => {
     </form>
   );
 
-  return <EndpointBox title="Update client" form={form}></EndpointBox>;
+  return (
+    <EndpointBox
+      title="Update contact"
+      form={form}
+      theme="#5DD6F4"
+    ></EndpointBox>
+  );
 };
 
-export default FormUpdateClient;
+export default FormUpdateContact;

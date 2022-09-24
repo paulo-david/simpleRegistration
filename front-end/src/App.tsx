@@ -1,6 +1,7 @@
 import "./App.css";
 
 import ClientList from "./components/ClientList";
+import ContactList from "./components/ContactList";
 
 import FormCreateClient from "./components/Forms/client/formCreateClient";
 import FormUpdateClient from "./components/Forms/client/formUpdateClient";
@@ -39,6 +40,8 @@ const App = () => {
           <FormGetContact></FormGetContact>
         </section>
       </div>
+
+      <ContactList></ContactList>
 
     </div>
   );

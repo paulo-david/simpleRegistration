@@ -38,7 +38,13 @@ const FormDeleteContact = () => {
     </form>
   );
 
-  return <EndpointBox title="Delete contact" form={form}></EndpointBox>;
+  return (
+    <EndpointBox
+      title="Delete contact"
+      form={form}
+      theme="#5DD6F4"
+    ></EndpointBox>
+  );
 };
 
 export default FormDeleteContact;

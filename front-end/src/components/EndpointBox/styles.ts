@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-const EndpointData = styled.section`
-  background-color: pink;
+interface Props {
+  theme?: string;
+}
+
+const EndpointData = styled.section<Props>`
+  background-color: ${(props) => props.theme};
   border-radius: 10px;
 
   width: 90%;

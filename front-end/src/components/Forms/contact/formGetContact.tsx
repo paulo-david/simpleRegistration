@@ -55,7 +55,7 @@ const FormGetContact = () => {
   );
 
   return (
-    <EndpointBox title="Get contact" form={form}>
+    <EndpointBox title="Get contact" form={form} theme="#5DD6F4">
       <ContactData></ContactData>
     </EndpointBox>
   );
