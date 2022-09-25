@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./back-end
+    command: gunicorn registerApi.wsgi --bind 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./front-end
+    volumes:
+      - frontend_build:/app/build
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 81:8080
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+      - frontend_build:/var/www/react
+    depends_on:
+      - backend
+      - frontend
+
+volumes:
+  frontend_build:
